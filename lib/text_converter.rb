@@ -7,28 +7,17 @@ class TextConverter
   def get_operator_and_number
     raise IOError, 'unknown operator' unless @input.is_a?String
     text_array = @input.split
-    operator = nil
-    number = nil
+    response = {}
 
     case text_array[0]
-      when 'add'
-        operator = '+'
-        number = validate_binary_operator(text_array)
-      when 'subtract'
-        operator = '-'
-        number = validate_binary_operator(text_array)
-      when 'multiply'
-        operator = '*'
-        number = validate_binary_operator(text_array)
-      when 'divide'
-        operator = '/'
-        number = validate_binary_operator(text_array)
+      when 'add', 'subtract' , 'multiply' , 'divide'
+        response = validate_binary_operator(text_array)
       when 'cancel'
-
+        raise IOError, 'unknown operator' if text_array.length > 1
+        response[:operator] = 'cancel'.to_sym
       when 'exit'
-        
-      else
-
+        raise IOError, 'unknown operator' if text_array.length > 1
+        response[:operator] = 'exit'.to_sym
     end
   end
 
@@ -41,7 +30,10 @@ class TextConverter
     else
       raise IOError, 'Invalid input'
     end
-    text_array[1].to_f
+    {
+      operator: text_array[0].to_sym,
+      number: text_array[1].to_f
+    }
   end
 
 end
