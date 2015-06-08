@@ -31,5 +31,11 @@ describe TextConverter do
       user_input = TextConverter.new('exit 20')
       expect{user_input.get_operator_and_number}.to raise_error(IOError, 'unknown operator')
     end
+
+    it "should return AddOperation object with value 10 for user input 'add 10'" do
+      user_input = TextConverter.new('add 10')
+      expected_response = AddOperation.new(10.to_f)
+      expect(user_input.get_operator_and_number.number).to eq(expected_response.number)
+    end
   end
 end
