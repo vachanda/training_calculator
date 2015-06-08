@@ -2,7 +2,7 @@
 class Calculator
   attr_reader :number
 
-  def initialize(number)
+  def initialize(number = 0)
     @number = number
   end
 
@@ -12,7 +12,6 @@ class Calculator
   end
 
   def add(number)
-    puts '*****************************************************'
     @number + number
   end
 end

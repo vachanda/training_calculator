@@ -5,7 +5,7 @@ class TextConverter
     @input = input_object
   end
 
-  def get_operator_and_number
+  def get_operation
     raise IOError, 'unknown operator' unless @input.is_a?String
     text_array = @input.split
 
