@@ -13,10 +13,16 @@ describe Operation do
       expect(operation).to_not eq(obj_new)
     end
 
-    it "should treat 2 objects of equal value as equal" do
+    it "should treat 2 objects of equal value and same class as equal" do
       operation1 = Operation.new(10)
       operation2 = Operation.new(10)
       expect(operation1).to eq(operation2)
+    end
+
+    it "should generate same hash for objects of same class and equal value" do
+      operation1 = Operation.new(10)
+      operation2 = Operation.new(10)
+      expect(operation1.hash).to eq(operation2.hash)
     end
   end
 end

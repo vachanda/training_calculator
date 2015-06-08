@@ -9,4 +9,8 @@ class Operation
     self.class == other.class && @number == other.number 
   end
   alias :eql? :==
+
+  def hash
+    [@number, self.class].hash
+  end
 end
